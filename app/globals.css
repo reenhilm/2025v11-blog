@@ -31,13 +31,8 @@ body {
   box-sizing: border-box;
 }
 
-a {
+.primarycolored {
   color: var(--clr-primary);
-  text-decoration: underline;
-
-  &:hover {
-      text-decoration: underline;
-  }
 }
 
 @media (prefers-color-scheme: dark) {
