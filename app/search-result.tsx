@@ -10,7 +10,7 @@ export default function SearchResult({ post }: { post: Post }) {
             </Link>
             <div className="flex justify-between mx-4 my-2">
                 <div className="flex justify-between gap-1">
-                    {post.tags.map((tag, index) => <Link className="hover:underline primarycolored" key={index} href={`poststag/${tag}`}>{tag}</Link>)}
+                    {post.tags.map((tag, index) => <Link className="hover:underline primarycolored" key={index} href={`/posts/tag/${tag}`} >{tag}</Link>)}
                 </div>
                 <div className="flex gap-3">
                     <div className="flex flex-col items-center">

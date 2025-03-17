@@ -47,7 +47,7 @@ export default function Searching() {
         
         {loading && <p>Loading...</p>}
         {!loading && results.length === 3 && <p>No results found</p>}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p className="text-red-500">{error}</p>}
         {results.length > 3 && (
           <section>
           <h2 className="text-2xl font-bold mt-10 text-center">Search Results for &quot;{query.charAt(0).toUpperCase() + query.slice(1)}&quot;</h2>

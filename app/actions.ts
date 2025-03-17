@@ -19,3 +19,12 @@ export async function getSearchPosts(query: string) {
     const searchResults = data.posts as post[];
     return searchResults;
   }
+
+  export async function getByTag(tag: string) {
+    const res = await fetch( `https://dummyjson.com/posts/tag/${tag}`);
+    if (!res.ok)
+        throw new Error('Error fetching data');
+    const data = await res.json();
+    const searchResults = data.posts as post[];
+    return searchResults;
+  }
