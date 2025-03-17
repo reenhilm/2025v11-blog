@@ -1,6 +1,6 @@
 "use client";
 import { Post } from "@/interfaces/posts";
-import SearchResult from "./search-result";
+import SearchResult from "./components/search-result";
 import { use } from "react";
 
 export default function SearchResultList({ posts }: { posts: Promise<Post[]> }) {
@@ -8,7 +8,7 @@ export default function SearchResultList({ posts }: { posts: Promise<Post[]> }) 
 
     return (
         <>
-            {postList.map((post: Post, index) => <SearchResult key={index} post={post} />)}        
+            {postList.map((post: Post, index) => <SearchResult key={index} post={post} postDetails={false} />)}        
         </>
     )
 }
