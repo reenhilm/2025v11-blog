@@ -27,9 +27,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
+ * {
   box-sizing: border-box;
 }
+
 
 .primarycolored {
   color: var(--clr-primary);
