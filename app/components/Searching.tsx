@@ -2,13 +2,13 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation';
 import { getSearchPosts } from '../actions';
-import { post } from '@/interface';
+import { Post } from '@/interface';
 import Link from 'next/link';
 
 export default function Searching() {
   const [query, setQuery] = useState('');
   const router = useRouter();
-  const [results, setResults] = useState<post[]>([]);
+  const [results, setResults] = useState<Post[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   useEffect(() => {

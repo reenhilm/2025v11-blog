@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { Post } from "@/interfaces/posts";
+import PostTextAsLink from "../post-text-as-link";
+import PostTextAsText from "../post-text-as-text";
 
-export default function SearchResult({ post }: { post: Post }) {
+//This component is used in both SearchResultList and PostResult
+export default function SearchResult({ post, postDetails }: { post: Post, postDetails: boolean }) {
     return (
-        <article className="place-self-start my-3 w-full">
-            <Link href={`/posts/${post.id}`} className="no-underline">
-                <h2 className="text-xl mx-2">{post.title}</h2>
-                <p className="mx-1">{post.body}</p>
-            </Link>
+        <article className="place-self-start flex flex-col my-3 w-full">
+            {!postDetails ?
+                <PostTextAsLink id={post.id} title={post.title} body={post.body} />
+                :
+                <PostTextAsText title={post.title} body={post.body} />}
             <div className="flex justify-between mx-4 my-2">
                 <div className="flex justify-between gap-1">
                     {post.tags.map((tag, index) => <Link className="hover:underline primarycolored" key={index} href={`poststag/${tag}`}>{tag}</Link>)}
@@ -27,8 +30,9 @@ export default function SearchResult({ post }: { post: Post }) {
                         <p>{post.reactions.dislikes}</p>
                     </div>
                 </div>
-                <Link href={`/posts/${post.id}`} className="hover:underline primarycolored">read more</Link>
+                {!postDetails ? <Link href={`/posts/${post.id}`} className="hover:underline primarycolored">read more</Link> : ''}
             </div>
+            {postDetails ? <Link href={`/users/${post.userId}`} className="hover:underline primarycolored place-self-center">more posts by this user</Link> : ''}
         </article>
     )
 }
