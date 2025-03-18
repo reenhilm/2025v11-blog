@@ -9,6 +9,7 @@ export interface Post {
     tags: string[];
     reactions: Reactions;
     views: number;
+    userId: number;
 }
 export interface Reactions {
     likes: number;
