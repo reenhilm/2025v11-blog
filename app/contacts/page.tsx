@@ -2,7 +2,7 @@
 import React from 'react'
 import Contacts from '../components/Contacts';
 
-export default function Contacts() {
+export default function ContactsPage() {
   return (
     <main>
         <section className="max-w-lg mx-auto p-4 mt-5">
