@@ -27,11 +27,13 @@ export async function getSearchPosts(query: string) {
   export async function getByTag(tag: string) {
     const res = await fetch( `https://dummyjson.com/posts/tag/${tag}`);
     if (!res.ok)
-        throw new Error('Error fetching data');
+        throw new Error(fetchFailedMessage);
+
     const data = await res.json();
-    const searchResults = data.posts as post[];
+    const searchResults = data.posts as Post[];
     return searchResults;
   }
+}
   
 export const fetchPost = async (id: number): Promise<Post> => {
     const res = await fetch(`https://dummyjson.com/posts/${id}`);
