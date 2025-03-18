@@ -24,7 +24,7 @@ export async function getSearchPosts(query: string) {
     return searchResults;
 }
 
-  export async function getByTag(tag: string) {
+export async function getByTag(tag: string) {
     const res = await fetch( `https://dummyjson.com/posts/tag/${tag}`);
     if (!res.ok)
         throw new Error(fetchFailedMessage);
@@ -32,7 +32,6 @@ export async function getSearchPosts(query: string) {
     const data = await res.json();
     const searchResults = data.posts as Post[];
     return searchResults;
-  }
 }
   
 export const fetchPost = async (id: number): Promise<Post> => {
