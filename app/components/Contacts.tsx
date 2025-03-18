@@ -1,12 +1,5 @@
 import React from 'react';
 
-interface Contact {
-  id: number;
-  name: string;
-  role: string;
-  email: string;
-}
-
 const contacts: Contact[] = [
   
   { id: 1, name: 'Aemail', role: 'CEO', email: 'aemail@gmail.com'},
