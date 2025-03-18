@@ -1,7 +1,7 @@
 "use client"
 
 import { getByTag } from '@/app/actions';
-import SearchResult from '@/app/search-result';
+import SearchResult from '@/app/components/search-result';
 import { Post } from '@/interfaces/posts';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
@@ -44,7 +44,7 @@ export default function TagPage() {
                     {tag && typeof tag === 'string' && (
                         <h1 className="text-3xl text-center font-bold my-15">Posts With Tag &quot;{tag.charAt(0).toUpperCase() + tag.slice(1)}&quot;</h1>
                     )}
-                    {tagPosts.map((post: Post, index) => <SearchResult key={index} post={post} />)}
+                    {tagPosts.map((post: Post, index) => <SearchResult key={index} post={post} postDetails={false} />)}
                 </section>
             )}
         </main>
