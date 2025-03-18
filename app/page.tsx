@@ -1,6 +1,5 @@
 import SearchResultList from "./search-result-list";
 import { fetchTopViewedPosts } from "./actions";
-import Contacts from "./components/Contacts"; // Import the Contacts component
 
 export default async function Home() {
   const posts = fetchTopViewedPosts(5);
@@ -12,13 +11,8 @@ export default async function Home() {
         <input className="indent-4" type="text" name="query" aria-labelledby="Search Query" id="query" required placeholder="Search for..." />
       </section>
       <h1 className="text-3xl">Most viewed posts</h1>
-      <SearchResultList posts={posts} />
-   
- {/* Add the Contacts component at the bottom */}
- <footer className="mt-10 w-full bg-gray-100 p-4">
- <Contacts />
-</footer>
-
-</main>
+      <SearchResultList posts={posts} />   
+   </main>
   );
-}
+  } 
+  
