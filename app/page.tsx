@@ -13,6 +13,6 @@ export default async function Home() {
       <h1 className="text-3xl">Most viewed posts</h1>
       <SearchResultList posts={posts} />   
    </main>
-  );
+  )
   } 
   
