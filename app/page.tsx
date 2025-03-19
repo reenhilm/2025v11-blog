@@ -4,7 +4,7 @@ import { fetchTopViewedPosts } from "./actions";
 export default async function Home() {
   const posts = fetchTopViewedPosts(5);
   
-  return (
+return (
     <main className="flex flex-col m-auto items-center max-w-120">
       <section className="flex my-4 border-1 rounded">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
@@ -14,5 +14,5 @@ export default async function Home() {
       <SearchResultList posts={posts} />   
    </main>
   )
-  } 
+} 
   
