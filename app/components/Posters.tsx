@@ -16,7 +16,7 @@ const Posters: React.FC = () => {
             try {
                 const data = await getProlificPosters();
                 setPosters(data);
-            } catch (err) {
+            } catch {
                 setError("Failed to fetch prolific posters.");
             }
         };
