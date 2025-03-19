@@ -1,6 +1,8 @@
 "use client"
 import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useCallback, useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation';
 import { getSearchPosts } from '../actions';
 import { Post } from '@/interface';
 import Link from 'next/link';
@@ -8,9 +10,7 @@ import Link from 'next/link';
 export default function Searching() {
   const [query, setQuery] = useState('');
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const queryParam = searchParams.get('query');
-  const [results, setResults] = useState<Post[]>([]);
+  const [results, setResults] = useState<post[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
