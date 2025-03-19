@@ -1,5 +1,8 @@
 import SearchResultList from "./search-result-list";
 import { fetchTopViewedPosts } from "./actions";
+import { ModeToggle } from "./components/mode-toggle";
+import { ThemeProvider } from "./components/theme-provider";
+import SearchInputSection from "./components/search-input-section";
 
 export default async function Home() {
   const posts = fetchTopViewedPosts(5);
