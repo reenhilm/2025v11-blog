@@ -6,7 +6,6 @@ import { Post } from '@/interfaces/posts';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
-
 export default function TagPage() {
     const { tag } = useParams();
     console.log(tag);
@@ -33,9 +32,6 @@ export default function TagPage() {
                 })
         }
     }, [tag]);
-
-
-
     return (
         <main className="flex flex-col m-auto items-center max-w-120">
             {error && <p className='text-2xl text-red-500'>Error: {error}</p>}
@@ -50,4 +46,3 @@ export default function TagPage() {
         </main>
     )
 }
-
