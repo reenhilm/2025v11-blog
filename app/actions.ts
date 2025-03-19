@@ -1,6 +1,6 @@
 "use server";
 import { Posts } from "@/interfaces/posts";
-import { Post } from "@/interface";
+import { Post } from "@/interfaces/posts";
 import { fetchFailedMessage } from "./constants";
 
 export const fetchTopViewedPosts = async(count = 3) => {
