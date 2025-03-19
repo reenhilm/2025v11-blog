@@ -35,7 +35,6 @@ body {
   box-sizing: border-box;
 }
 
-
 .primarycolored {
   color: var(--clr-primary);
 }

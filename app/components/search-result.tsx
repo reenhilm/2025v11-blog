@@ -6,7 +6,7 @@ import PostTextAsText from "../post-text-as-text";
 //This component is used in both SearchResultList and PostResult
 export default function SearchResult({ post, postDetails }: { post: Post, postDetails: boolean }) {
     return (
-        <article className="place-self-start flex flex-col my-3 w-full">
+        <article className="place-self-start flex flex-col my-3 w-full"> 
             {!postDetails ?
                 <PostTextAsLink id={post.id} title={post.title} body={post.body} />
                 :
@@ -32,7 +32,7 @@ export default function SearchResult({ post, postDetails }: { post: Post, postDe
                 </div>
                 {!postDetails ? <Link href={`/posts/${post.id}`} className="hover:underline primarycolored theme-set_url-link">read more</Link> : ''}
             </div>
-            {postDetails ? <Link href={`/users/${post.userId}`} className="hover:underline primarycolored place-self-center">more posts by this user</Link> : ''}
+            {postDetails ? <Link href={`/users/${post.userId}`} className="hover:underline primarycolored place-self-center theme-set_url-link">more posts by this user</Link> : ''}
         </article>
     )
 }
