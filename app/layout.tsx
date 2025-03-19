@@ -5,6 +5,7 @@ import { ThemeProvider } from "./components/theme-provider";
 
 import "./globals.css";
 import "./css/themes.css";
+import Navbar from "./components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
