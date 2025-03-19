@@ -43,6 +43,11 @@ export default function Searching() {
     <main>
 <form onSubmit={(e) => {
         e.preventDefault();
+        if (query.trim() === '')
+        {
+          setError('The search-query can\'t be empty');
+          return;
+        }
         handleSearch(query);
       }} className="flex gap-2 my-4">
         <input
