@@ -1,0 +1,38 @@
+.theme-set-inherit_all
+{
+    background-color: inherit;
+    color: inherit;
+}
+
+html[class=dark][style="color-scheme: dark;"]
+{
+    body
+    {
+        background-color: rgb(18, 18, 18);
+        color: rgb(237, 237, 237);
+    }
+    *
+    {
+        .theme-set-values_ordinary
+        {
+            background-color: rgb(18, 18, 18);
+            color: rgb(237, 237, 237);
+        }
+
+        .theme-set_search-buton
+        {
+            /*
+            https://get-color.com/color-wheel/
+            https://codepen.io/derekbtw/pen/oGjPZb
+            https://www.computerhope.com/cgi-bin/htmlcolor.pl?c=654321
+            https://miniwebtool.com/gradient-generator/
+            */
+            filter: brightness(0.71) contrast(225%) hue-rotate(18deg) opacity(91%);
+        }
+
+        .theme-set_url-link
+        {
+            filter: hue-rotate(-60deg) saturate(100%) brightness(235.88%);
+        }
+    }
+}
