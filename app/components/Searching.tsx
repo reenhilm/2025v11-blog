@@ -3,16 +3,31 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getSearchPosts } from '../actions';
 import { Post } from '@/interfaces/posts';
-import Link from 'next/link';
+import SearchUI from './search-ui';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
 
 export default function Searching() {
   const [query, setQuery] = useState('');
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryParam = searchParams.get('query');
+  const sortParam = searchParams.get('sort');
+  const orderParam = searchParams.get('order');
   const [results, setResults] = useState<Post[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [sortingBy, setSortingBy] = useState(sortParam || "");
+  const [order, setOrder] = useState(orderParam || "");
+  const [sortedResults, setSortedResults] = useState<Post[]>([]);
 
   const handleSearch = useCallback(async (query: string) => {
     setLoading(true);
@@ -33,19 +48,55 @@ export default function Searching() {
 
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && query) {
+    if (e.key === 'Enter' && query.length > 3) {
       setQuery(query);
       router.push(`/search?query=${query}`);
     }
   };
+  const handleSortingChange = (value: string) => {
+    setSortingBy(value);
+  }
+  const handleOrderChange = (value: string) => {
+    setOrder(value);
+  }
+  const sortPosts = useCallback((a: Post, b: Post) => {
+    if (sortingBy === "titles" && order === "Descending") {
+      return (b.title).localeCompare(a.title);
+    } else if (sortingBy === "titles" && order === "Ascending") {
+      return (a.title).localeCompare(b.title);
+    } else if (sortingBy === "views" && order === "Descending") {
+      return (b.views) - (a.views);
+    } else if (sortingBy === "views" && order === "Ascending") {
+      return (a.views) - (b.views);
+    } else if (sortingBy === "likes" && order === "Descending") {
+      return (b.reactions.likes) - (a.reactions.likes);
+    } else if (sortingBy === "likes" && order === "Ascending") {
+      return (a.reactions.likes) - (b.reactions.likes);
+    }
+    return 0;
+
+  }, [sortingBy, order]);
+
+  useEffect(() => {
+    const sorted = results.sort(sortPosts);
+    setSortedResults(sorted);
+    if (sortingBy && order) {
+      router.push(`/search?query=${query}&sort=${sortingBy}&order=${order}`);
+    }
+  }, [results, sortPosts, router, sortingBy, order, query]);
 
   return (
     <main>
-<form onSubmit={(e) => {
+      <form onSubmit={(e) => {
         e.preventDefault();
-        if (query.trim() === '')
-        {
+        if (query.trim() === '') {
           setError('The search-query can\'t be empty');
+          setResults([]);
+          return;
+        }
+        if (query.length < 3) {
+          setError('The search-query must be at least 3 characters long');
+          setResults([]);
           return;
         }
         handleSearch(query);
@@ -64,28 +115,38 @@ export default function Searching() {
       </form>
       <section className="flex flex-col items-center">
 
-        {loading && <p>Loading...</p>}
-        {!loading && results.length === 0 && <p>No results found</p>}
+        {loading && !error && <p>Loading...</p>}
+        {!loading && !error && results.length === 0 && <p>No results found</p>}
         {error && <p className="text-red-500">{error}</p>}
-        {results.length > 3 && (
+        {results.length > 3 && query.length >= 3 && (
           <section>
             <h2 className="text-2xl font-bold mt-10 text-center">Search Results</h2>
-            <ul className="flex flex-col gap-2 h-100 w-100 border-2 rounded-md mt-30 
-          max-h-100 overflow-y-auto
-          [&::-webkit-scrollbar]:w-4
-          [&::-webkit-scrollbar-track]:rounded-full
-          [&::-webkit-scrollbar-track]:bg-gray-100
-          [&::-webkit-scrollbar-thumb]:rounded-full
-          [&::-webkit-scrollbar-thumb]:bg-gray-300
-          dark:[&::-webkit-scrollbar-track]:bg-neutral-700
-          dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
-              {results.map((post) => (
-                <li key={post.id} className="flex flex-col gap-2 p-2">
-                  <Link href={`/posts/${post.id}`}><h2 className="cursor-pointer underline text-blue-700">{post.title}</h2></Link>
-                  <h3>{post.views} views</h3>
-                </li>
-              ))}
-            </ul>
+            <div className="flex justify-between mb-5 mt-25">
+              <RadioGroup defaultValue={orderParam || ""} className="flex items-center space-x-2 pr-5"
+                onValueChange={handleOrderChange} >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="Ascending" id="r1" />
+                  <Label htmlFor="r1">Ascending</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="Descending" id="r2" />
+                  <Label htmlFor="r2">Descending</Label>
+                </div>
+              </RadioGroup>
+              <Select defaultValue={sortParam || ""} onValueChange={handleSortingChange}>
+                <SelectTrigger className="w-[150px]">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="titles">Titles</SelectItem>
+                    <SelectItem value="views">Views</SelectItem>
+                    <SelectItem value="likes">Likes</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            {sortedResults ? <SearchUI results={sortedResults} /> : <SearchUI results={results} />}
           </section>
         )}
       </section>
