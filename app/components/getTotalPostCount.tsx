@@ -10,7 +10,7 @@ const TotalPosts: React.FC = () => {
             try {
                 const count = await getTotalPostsCount();
                 setTotalPosts(count);
-            } catch (err) {
+            } catch {
                 setError("Failed to fetch the total number of posts.");
             }
         };
