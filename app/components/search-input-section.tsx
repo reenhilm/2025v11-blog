@@ -28,7 +28,7 @@ export default function SearchInputSection() {
             />
             <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded theme-set_search-buton"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded theme-set_redirect-element-field"
             >
                 Search
             </button>
