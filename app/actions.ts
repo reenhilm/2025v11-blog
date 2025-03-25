@@ -54,7 +54,9 @@ export async function getProlificPosters() {
         .sort((a, b) => b.count - a.count);
 
     //Add one more mapping step to get the user name.
-    //const niceNames = await getAllUsers();   
+    const niceNames = await getAllUsers();   
+    console.log(niceNames);
+    
     //prolificPosters.forEach((poster) => {     
     //    const user = users.find((user) => user.id === poster.userId);
     //    poster.name = user?.name || "Unknown";

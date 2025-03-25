@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+
 export const getAllUsers = async () => {
     try {
         const response = await fetch("https://dummyjson.com/users");
