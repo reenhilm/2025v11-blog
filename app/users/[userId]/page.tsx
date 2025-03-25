@@ -9,23 +9,30 @@ import ErrorDialog from "@/app/components/error-dialog";
 
 export default async function PostPage({ params }: { params: Promise<{ userId: number }> }) {
     const { userId } = await params;
-    const posts:Promise<Post[]> = fetchPostsByUserId(userId);
-    const result: User | ApiError = await fetchUserById(userId);
+    const postsResult: Post[] | ApiError = await fetchPostsByUserId(userId);
+    const userResult: User | ApiError = await fetchUserById(userId);
 
-    if (result instanceof ApiError) {
-        if (result.show404) {
+    if (userResult instanceof ApiError) {
+        if (userResult.show404) {
             return notFound();
-        } else if (result.showCustom) {
+        } else if (userResult.showCustom) {
             return (
                 <ErrorDialog
-                    message={result.message}
+                    message={userResult.message}
                 />
             )
         }
-    } else
-    {    
+    } else if (postsResult instanceof ApiError) {
+        if (postsResult.showCustom) {
+            return (
+                <ErrorDialog
+                    message={postsResult.message}
+                />
+            )
+        }
+    } else {    
         return (
-            <UserPostsResult posts={posts} user={result} />
+            <UserPostsResult posts={postsResult} user={userResult} />
             );
     }
 }

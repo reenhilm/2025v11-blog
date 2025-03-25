@@ -45,14 +45,22 @@ export const fetchPost = async (id: number): Promise<Post> => {
     return await res.json();
 };
 
-export const fetchPostsByUserId = async (userId: number): Promise<Post[]> => {
+export const fetchPostsByUserId = async (userId: number): Promise<Post[] | ApiError> => {
+    try {    
     const res = await fetch(`https://dummyjson.com/users/${userId}/posts`);
 
-    if (!res.ok)
-        throw new Error(fetchFailedMessage);
+    if (!res.ok) {
+        //logging could be done here
+        throw ApiError.fromError(res.status, fetchFailedMessage);
+    }
 
     const data: Posts = await res.json();
-    return data.posts;
+        return data.posts;
+
+    } catch {
+        //catching all errors, we don't want to show all internal error-messages to client so providing general error to client
+        return ApiError.fromError(500, "Network error occurred.");
+    }        
 };
 
 export const fetchUserById = async (userId: number): Promise<User | ApiError > => {
@@ -60,10 +68,9 @@ export const fetchUserById = async (userId: number): Promise<User | ApiError > =
     const res = await fetch(`https://dummyjson.com/users/${userId}`);
 
     if (res.status == 404)
-            return ApiError.fromError(404);;
+            return ApiError.fromError(404);
 
-    if (!res.ok)
-    {
+    if (!res.ok) {
         //logging could be done here
         throw ApiError.fromError(res.status, fetchFailedMessage);
     }
