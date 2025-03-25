@@ -1,5 +1,5 @@
 "use server"
-import { fetchPostsById, fetchUserById } from "@/app/actions";
+import { fetchPostsByUserId, fetchUserById } from "@/app/actions";
 import UserPostsResult from "./user-posts-result";
 import { Post } from "@/interfaces/posts";
 import { User } from "@/interfaces/user";
@@ -9,7 +9,7 @@ import ErrorDialog from "@/app/components/error-dialog";
 
 export default async function PostPage({ params }: { params: Promise<{ userId: number }> }) {
     const { userId } = await params;
-    const posts:Promise<Post[]> = fetchPostsById(userId);
+    const posts:Promise<Post[]> = fetchPostsByUserId(userId);
     const result: User | ApiError = await fetchUserById(userId);
 
     if (result instanceof ApiError) {

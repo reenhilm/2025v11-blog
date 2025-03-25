@@ -45,7 +45,7 @@ export const fetchPost = async (id: number): Promise<Post> => {
     return await res.json();
 };
 
-export const fetchPostsById = async (userId: number): Promise<Post[]> => {
+export const fetchPostsByUserId = async (userId: number): Promise<Post[]> => {
     const res = await fetch(`https://dummyjson.com/users/${userId}/posts`);
 
     if (!res.ok)
