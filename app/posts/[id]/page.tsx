@@ -1,12 +1,10 @@
-"use server"
-import { fetchPost } from "@/app/actions";
-import PostResult from "@/app/posts/[id]/post-result";
+import { Suspense } from "react";
+import PostByIdContent from "./post-by-id-content";
 
 export default async function PostPage({ params }: { params: Promise<{ id: number }> }) {
-    const { id } = await params;
-    const post = fetchPost(id);
-    
     return (
-        <PostResult post={post} />
+        <Suspense fallback={<p className="text-gray-500 text-center">Loading...</p>}>
+            <PostByIdContent params={params} />
+        </Suspense>
     );
 }
