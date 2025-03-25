@@ -3,6 +3,7 @@ import { Posts } from "@/interfaces/posts";
 import { Post } from "@/interfaces/posts";
 import { fetchFailedMessage } from "./constants";
 import { User } from "@/interfaces/user";
+import ApiError from "@/classes/api-error";
 
 export const fetchTopViewedPosts = async(count = 3) => {
     const res = await fetch('https://dummyjson.com/posts');
@@ -54,20 +55,20 @@ export const fetchPostsById = async (userId: number): Promise<Post[]> => {
     return data.posts;
 };
 
-export const fetchUserById = async (userId: number): Promise<User | null> => {
+export const fetchUserById = async (userId: number): Promise<User | ApiError > => {
     try {
     const res = await fetch(`https://dummyjson.com/users/${userId}`);
 
     if (res.status == 404)
-        return null;
+            return ApiError.fromError(404);;
 
     if (!res.ok)
-        throw new Error(fetchFailedMessage);
+        throw ApiError.fromError(res.status, fetchFailedMessage);
 
     const data: User = await res.json();
         return data;
 
     } catch {
-        return null;
+        return ApiError.fromError(500, "Network error occurred.");
     }
 };

@@ -4,15 +4,28 @@ import UserPostsResult from "./user-posts-result";
 import { Post } from "@/interfaces/posts";
 import { User } from "@/interfaces/user";
 import { notFound } from "next/navigation";
+import ApiError from "@/classes/api-error";
+import ErrorDialog from "@/app/components/error-dialog";
 
 export default async function PostPage({ params }: { params: Promise<{ userId: number }> }) {
     const { userId } = await params;
     const posts:Promise<Post[]> = fetchPostsById(userId);
-    const user: User | null = await fetchUserById(userId);
-    if (user === null)
-        return notFound();
-    
-    return (
-        <UserPostsResult posts={posts} user={user} />
-    );
+    const result: User | ApiError = await fetchUserById(userId);
+
+    if (result instanceof ApiError) {
+        if (result.show404) {
+            return notFound();
+        } else if (result.showCustom) {
+            return (
+                <ErrorDialog
+                    message={result.message}
+                />
+            )
+        }
+    } else
+    {    
+        return (
+            <UserPostsResult posts={posts} user={result} />
+            );
+    }
 }
