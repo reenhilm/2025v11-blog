@@ -63,12 +63,16 @@ export const fetchUserById = async (userId: number): Promise<User | ApiError > =
             return ApiError.fromError(404);;
 
     if (!res.ok)
+    {
+        //logging could be done here
         throw ApiError.fromError(res.status, fetchFailedMessage);
+    }
 
     const data: User = await res.json();
         return data;
 
     } catch {
+        //catching all errors, we don't want to show all internal error-messages to client so providing general error to client
         return ApiError.fromError(500, "Network error occurred.");
     }
 };
