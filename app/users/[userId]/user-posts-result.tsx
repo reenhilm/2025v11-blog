@@ -9,7 +9,8 @@ export default function UserPostsResult({ posts, user }: { posts: Promise<Post[]
     return (
         <main className="m-auto max-w-120 my-13">
             <h2 className="text-xl mx-2">Posts by user {user.username || 'Unknown user'}</h2>
-            {postsUsed.map((post, index) => <SearchResult key={index} post={post} postDetails={false} />) }           
+            {postsUsed.length === 0 ? <section className="flex"><p className="m-auto my-10">No posts found</p></section> : ''}
+            {postsUsed.map((post, index) => <SearchResult key={index} post={post} postDetails={false} />) }
         </main>
     )
 }
