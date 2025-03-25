@@ -5,14 +5,22 @@ import { fetchFailedMessage } from "./constants";
 import { User } from "@/interfaces/user";
 import ApiError from "@/classes/api-error";
 
-export const fetchTopViewedPosts = async(count = 3) => {
-    const res = await fetch('https://dummyjson.com/posts');
-   
-    if (!res.ok)
-        throw new Error(fetchFailedMessage);
+export const fetchTopViewedPosts = async (count = 3): Promise<Post[] | ApiError> => {
+    try {
+        const res = await fetch('https://dummyjson.com/posts');
+          
+        if (!res.ok) {
+            //logging could be done here
+            throw ApiError.fromError(res.status, fetchFailedMessage);
+        }
 
-    const data: Posts = await res.json();
-    return data.posts.sort((a, b) => b.views - a.views).slice(0, count);
+        const data: Posts = await res.json();
+        return data.posts.sort((a, b) => b.views - a.views).slice(0, count);
+
+    } catch {
+        //catching all errors, we don't want to show all internal error-messages to client so providing general error to client
+        return ApiError.fromError(500, "Network error occurred.");
+    }
 };
 
 export async function getSearchPosts(query: string) {
