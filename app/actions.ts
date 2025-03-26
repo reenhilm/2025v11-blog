@@ -62,15 +62,6 @@ export async function getProlificPosters() {
     const prolificPosters = Object.entries(userPostCounts)
         .map(([userId, count]) => ({ userId: Number(userId), count }))
         .sort((a, b) => b.count - a.count);
-
-    //Add one more mapping step to get the user name.
-    //const niceNames = await getAllUsers();   
-    //prolificPosters.forEach((poster) => {     
-    //    const user = users.find((user) => user.id === poster.userId);
-    //    poster.name = user?.name || "Unknown";
-    // }
-   // )   
-   //    return niceNames;
     return prolificPosters;
 }
 
