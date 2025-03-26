@@ -2,18 +2,20 @@ import Link from "next/link";
 import { Post } from "@/interfaces/posts";
 import PostTextAsLink from "../post-text-as-link";
 import PostTextAsText from "../post-text-as-text";
+// import PostTextAsCard from "../post-text-as-card";
 
 //This component is used in both SearchResultList and PostResult
 export default function SearchResult({ post, postDetails }: { post: Post, postDetails: boolean }) {
     return (
         <article className="place-self-start flex flex-col my-3 w-full">
             {!postDetails ?
+                // <PostTextAsCard id={post.id} title={post.title} body={post.body} tags={post.tags} reactions={post.reactions}/>
                 <PostTextAsLink id={post.id} title={post.title} body={post.body} />
                 :
                 <PostTextAsText title={post.title} body={post.body} />}
             <div className="flex justify-between mx-4 my-2">
                 <div className="flex justify-between gap-1">
-                    {post.tags.map((tag, index) => <Link className="hover:underline primarycolored theme-set_url-link" key={index} href={`/posts/tag/${tag}`} >{tag}</Link>)}
+                    {post.tags.map((tag, index) => <Link className="hover:underline primarycolored theme-set_url-link mr-2" key={index} href={`/posts/tag/${tag}`} >{tag}</Link>)}
                 </div>
                 <div className="flex gap-3">
                     <div className="flex flex-col items-center theme-set-inherit_all">

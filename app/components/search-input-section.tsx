@@ -14,9 +14,9 @@ export default function SearchInputSection() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex my-4 border-1 rounded theme-set-values_ordinary">
+        <form onSubmit={handleSubmit} className="flex gap-2 my-4">
             <input
-                className="indent-4 px-2 py-1 theme-set-values_ordinary theme-set-values_ordinary"
+                className="flex-1 border p-2 rounded w-100"
                 type="text"
                 name="query"
                 aria-labelledby="Search Query"
@@ -28,7 +28,7 @@ export default function SearchInputSection() {
             />
             <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded theme-set_redirect-element-field"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
                 Search
             </button>

@@ -48,11 +48,18 @@ export default function Searching() {
 
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && query.length > 3) {
+    if (e.key === 'Enter' && query.length > 0) {
       setQuery(query);
       router.push(`/search?query=${query}`);
+      // handleClick();
     }
   };
+  const handleClick = () => {
+    
+      router.push(`/search?query=${query}`);
+      setQuery(query);
+  }
+
   const handleSortingChange = (value: string) => {
     setSortingBy(value);
   }
@@ -85,7 +92,7 @@ export default function Searching() {
     }
   }, [results, sortPosts, router, sortingBy, order, query]);
 
-  return (
+ return (
     <main>
       <form onSubmit={(e) => {
         e.preventDefault();
@@ -102,7 +109,7 @@ export default function Searching() {
         handleSearch(query);
       }} className="flex gap-2 my-4">
         <input
-          className="flex-1 border p-2 rounded"
+          className="flex-1 border p-2 rounded w-100"
           type="text"
           placeholder="Search for..."
           value={query}
@@ -111,12 +118,14 @@ export default function Searching() {
         />
         <button
           type="submit"
+          onClick={handleClick}
+
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
       </form>
       <section className="flex flex-col items-center">
 
         {loading && !error && <p>Loading...</p>}
-        {!loading && !error && results.length === 0 && <p>No results found</p>}
+        {!loading && !error && results.length === 0 && <p>Search for something</p>}
         {error && <p className="text-red-500">{error}</p>}
         {results.length > 3 && query.length >= 3 && (
           <section>
