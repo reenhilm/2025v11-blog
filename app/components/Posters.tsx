@@ -6,6 +6,7 @@ interface ProlificPoster {
     userId: number;
     username: string;
     count: number;
+    age: number;
 }
 
 const Posters: React.FC = () => {
@@ -36,7 +37,7 @@ const Posters: React.FC = () => {
             <ul>
                 {posters.map((poster) => (
                     <li key={poster.userId}>
-                        <b>Name:</b> {poster.username}, Posts: {poster.count}
+                        <b>Name:</b> {poster.username}, Posts: {poster.count}, Age: {poster.age}
                     </li>
                 ))}
             </ul>
