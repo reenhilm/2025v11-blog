@@ -1,38 +1,185 @@
-.theme-set-inherit_all
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root 
 {
-    background-color: inherit;
-    color: inherit;
+    --clr-primary: #FFFFFF;
+    --clr-secondary: #2B7FFF;
+    --clr-accent: #2600FF;
+    --clr-neutral: #737373;
+    --clr-text: #121212;
+    --clr-text-white: #FFFFFF;
+}
+
+html
+{
+    *:not(.theme-just-attributes)
+    {
+        background-color: var(--clr-primary);
+        color: var(--clr-text);
+    }
+
+    .theme-primary-colored:not(.theme-just-attributes)
+    {
+        background-color: var(--clr-primary);
+        color: var(--clr-text);
+    }
+
+    .theme-secondary-colored:not(.theme-just-attributes)
+    {
+        background-color: var(--clr-secondary);
+        color: var(--clr-text-white);
+    }
+
+    .theme-accent-colored:not(.theme-just-attributes)
+    {
+        background-color: var(--clr-primary);
+        color: var(--clr-accent);
+    }
+
+    .theme-neutral-colored:not(.theme-just-attributes)
+    {
+        color: var(--clr-neutral);
+    }
+
+    .theme-children-inherit
+    {
+        *:not([class=theme-break-inherit])
+        {
+            background: inherit;
+            color: inherit;
+        }
+    }
+
+    :not(.theme-placeholder-secondary-colored, 
+    .theme-placeholder-accent-colored, 
+    .theme-placeholder-neutral-colored, 
+    .theme-placeholder-text-colored).theme-attribute-placeholder.theme-primary-colored::placeholder
+    {
+        color: var(--clr-primary);
+    }
+
+    :not(.theme-placeholder-primary-colored, 
+    .theme-placeholder-accent-colored, 
+    .theme-placeholder-neutral-colored, 
+    .theme-placeholder-text-colored).theme-attribute-placeholder.theme-secondary-colored::placeholder
+    {
+        color: var(--clr-secondary);
+    }
+    :not(.theme-placeholder-primary-colored, 
+    .theme-placeholder-secondary-colored, 
+    .theme-placeholder-neutral-colored, 
+    .theme-placeholder-text-colored).theme-attribute-placeholder.theme-accent-colored::placeholder
+    {
+        color: var(--clr-accent);
+    }
+
+    :not(.theme-placeholder-primary-colored, 
+    .theme-placeholder-secondary-colored, 
+    .theme-placeholder-accent-colored, 
+    .theme-placeholder-text-colored).theme-attribute-placeholder.theme-neutral-colored::placeholder
+    {
+        color: var(--clr-neutral);
+    }
+
+    :not(.theme-placeholder-primary-colored, 
+    .theme-placeholder-secondary-colored, 
+    .theme-placeholder-accent-colored, 
+    .theme-placeholder-neutral-colored).theme-attribute-placeholder.theme-text-colored::placeholder
+    {
+        color: var(--clr-text);
+    }
+
+    .theme-placeholder-primary-colored::placeholder
+    {
+        color: var(--clr-primary);
+    }
+    .theme-placeholder-secondary-colored::placeholder
+    {
+        color: var(--clr-secondary);
+    }
+    .theme-placeholder-accent-colored::placeholder
+    {
+        color: var(--clr-accent);
+    }
+    .theme-placeholder-neutral-colored::placeholder
+    {
+        color: var(--clr-neutral);
+    }
+    .theme-placeholder-text-colored::placeholder
+    {
+        color: var(--clr-text);
+    }
+
+    :not(.theme-border-secondary-colored, 
+    .theme-border-accent-colored, 
+    .theme-border-neutral-colored, 
+    .theme-border-text-colored).theme-attribute-border.theme-primary-colored
+    {
+        border-color: var(--clr-primary);
+    }
+
+    :not(.theme-border-primary-colored, 
+    .theme-border-accent-colored, 
+    .theme-border-neutral-colored, 
+    .theme-border-text-colored).theme-attribute-border.theme-secondary-colored
+    {
+        border-color: var(--clr-secondary);
+    }
+    :not(.theme-border-primary-colored, 
+    .theme-border-secondary-colored, 
+    .theme-border-neutral-colored, 
+    .theme-border-text-colored).theme-attribute-border.theme-accent-colored
+    {
+        border-color: var(--clr-accent);
+    }
+
+    :not(.theme-border-primary-colored, 
+    .theme-border-secondary-colored, 
+    .theme-border-accent-colored, 
+    .theme-border-text-colored).theme-border-placeholder.theme-neutral-colored
+    {
+        border-color: var(--clr-neutral);
+    }
+
+    :not(.theme-border-primary-colored, 
+    .theme-border-secondary-colored, 
+    .theme-border-accent-colored, 
+    .theme-border-neutral-colored).theme-attribute-border.theme-text-colored
+    {
+        border-color: var(--clr-text);
+    }
+
+    .theme-border-primary-colored
+    {
+        border-color: var(--clr-primary);
+    }
+    .theme-border-secondary-colored
+    {
+        border-color: var(--clr-secondary);
+    }
+    .theme-border-accent-colored
+    {
+        border-color: var(--clr-accent);
+    }
+    .theme-border-neutral-colored
+    {
+        border-color: var(--clr-neutral);
+    }
+    .theme-border-text-colored
+    {
+        border-color: var(--clr-text);
+    }
 }
 
 html[class=dark][style="color-scheme: dark;"]
 {
-    body
-    {
-        background-color: rgb(18, 18, 18);
-        color: rgb(237, 237, 237);
-    }
-    *
-    {
-        .theme-set-values_ordinary
-        {
-            background-color: rgb(18, 18, 18);
-            color: rgb(237, 237, 237);
-        }
-
-        .theme-set_redirect-element-field
-        {
-            /*
-            https://get-color.com/color-wheel/
-            https://codepen.io/derekbtw/pen/oGjPZb
-            https://www.computerhope.com/cgi-bin/htmlcolor.pl?c=654321
-            https://miniwebtool.com/gradient-generator/
-            */
-            filter: brightness(0.71) contrast(225%) hue-rotate(18deg) opacity(91%);
-        }
-
-        .theme-set_url-link
-        {
-            filter: hue-rotate(-60deg) saturate(100%) brightness(235.88%);
-        }
-    }
+    --clr-primary: #121212;
+    --clr-secondary: #3C18E9;
+    --clr-accent: #00A7FF;
+    --clr-neutral: #A3A3A3;
+    --clr-text: #FFFFFF;
 }

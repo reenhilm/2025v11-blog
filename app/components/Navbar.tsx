@@ -5,7 +5,7 @@ import { ThemeProvider } from "./theme-provider";
 
 const Navbar: React.FC = () => {
     return (
-      <nav className="bg-blue-500 text-white p-4 theme-set_redirect-element-field">
+      <nav className="bg-blue-500 text-white p-4 theme-secondary-colored theme-children-inherit">
         <ul className="flex space-x-4">
           <li>
             <Link href="/" className="hover:underline">Home</Link>
@@ -17,14 +17,16 @@ const Navbar: React.FC = () => {
             <Link href="/contacts" className="hover:underline">Contacts</Link>
           </li>
           <li>
-            <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-            >
-              <ModeToggle />
-            </ThemeProvider>
+            <div className="theme-break-inherit">
+              <ThemeProvider
+                      attribute="class"
+                      defaultTheme="system"
+                      enableSystem
+                      disableTransitionOnChange
+              >
+                <ModeToggle />
+              </ThemeProvider>
+            </div>
           </li>
         </ul>
       </nav>
