@@ -17,12 +17,15 @@ const Navbar: React.FC = () => {
             <Link href="/contacts" className="hover:underline">Contacts</Link>
           </li>
           <li>
+            <Link href="/posters" className="hover:underline">Most prolific posters</Link>
+          </li>
+          <li>
             <div className="theme-break-inherit">
               <ThemeProvider
-                      attribute="class"
-                      defaultTheme="system"
-                      enableSystem
-                      disableTransitionOnChange
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
               >
                 <ModeToggle />
               </ThemeProvider>
