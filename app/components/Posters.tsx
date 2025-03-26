@@ -32,11 +32,11 @@ const Posters: React.FC = () => {
     //Modified to include name and count.
     return (
         <div>
-            <h2>Most Prolific Posters</h2>
+            <h1 className="text-3xl font-bold flex justify-between my-5">The Most Prolific Posters</h1>
             <ul>
                 {posters.map((poster) => (
                     <li key={poster.userId}>
-                        Name: {poster.username}, User ID: {poster.userId}, Posts: {poster.count}
+                        Name: {poster.username}, Posts: {poster.count}
                     </li>
                 ))}
             </ul>
