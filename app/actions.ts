@@ -71,7 +71,7 @@ export async function getProlificPosters() {
                     count,
                 };
             }   
-            
+                 
             return {
                 userId: Number(userId),
                 username: user.username,
