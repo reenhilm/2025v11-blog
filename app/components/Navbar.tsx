@@ -6,7 +6,7 @@ import { ThemeProvider } from "./theme-provider";
 const Navbar: React.FC = () => {
     return (
       <nav className="bg-blue-500 text-white p-4 theme-set_redirect-element-field">
-        <ul className="flex space-x-4">
+        <ul className="flex items-center space-x-4">
           <li>
             <Link href="/" className="hover:underline">Home</Link>
           </li>
