@@ -102,7 +102,7 @@ export default function Searching() {
         handleSearch(query);
       }} className="flex gap-2 my-4">
         <input
-          className="flex-1 border p-2 rounded"
+          className="flex-1 border p-2 rounded theme-attribute-placeholder theme-border-text-colored theme-neutral-colored"
           type="text"
           placeholder="Search for..."
           value={query}
@@ -111,7 +111,7 @@ export default function Searching() {
         />
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded theme-secondary-colored">Search</button>
       </form>
       <section className="flex flex-col items-center">
 
