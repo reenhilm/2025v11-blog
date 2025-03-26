@@ -61,10 +61,20 @@ export async function getProlificPosters() {
     // Fetch user details and add the name to the result  
     const prolificPosters = await Promise.all(
         Object.entries(userPostCounts).map(async ([userId, count]) => {
-            const user = await fetchUserById(Number(userId)); // Fetch user details
+            const user = await fetchUserById(Number(userId)); // Fetch user info
+            
+            if (user instanceof ApiError) {
+                // If user is not found, return a default user
+                return {
+                    userId: Number(userId),
+                    username: "Unknown",
+                    count,
+                };
+            }   
+            
             return {
                 userId: Number(userId),
-                username: String(user.username), 
+                username: user.username,
                 count,
             };
         })
