@@ -46,14 +46,6 @@ export default function Searching() {
     }
   }, [handleSearch, queryParam]);
 
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && query.length > 0) {
-      setQuery(query);
-      router.push(`/search?query=${query}`);
-      // handleClick();
-    }
-  };
   const handleClick = () => {
     
       router.push(`/search?query=${query}`);
@@ -107,6 +99,7 @@ export default function Searching() {
           return;
         }
         handleSearch(query);
+        handleClick();
       }} className="flex gap-2 my-4">
         <input
           className="flex-1 border p-2 rounded w-100"
@@ -114,12 +107,9 @@ export default function Searching() {
           placeholder="Search for..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={handleKeyDown}
         />
         <button
           type="submit"
-          onClick={handleClick}
-
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Search</button>
       </form>
       <section className="flex flex-col items-center">
