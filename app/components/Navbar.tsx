@@ -8,9 +8,8 @@ import { Separator } from "@/components/ui/separator"
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="flex justify-between bg-blue-500 text-white p-4 theme-set_redirect-element-field">
+    <nav className="flex justify-between bg-blue-500 text-white p-4 theme-secondary-colored theme-children-inherit">
       <ul className="flex items-center space-x-4">
-
         <li>
           <Link href="/" className="hover:underline">Home</Link>
         </li>
@@ -26,18 +25,20 @@ const Navbar: React.FC = () => {
         <li>
           <Link href="/posters" className="hover:underline">Most prolific posters</Link>
         </li>
-
       </ul>
-
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange>
-        <ModeToggle />
-      </ThemeProvider>
-    </nav>
+      <div className="theme-break-inherit">
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <ModeToggle />
+              </ThemeProvider>
+        </div>
+      </nav>
   );
 };
+
 
 export default Navbar;

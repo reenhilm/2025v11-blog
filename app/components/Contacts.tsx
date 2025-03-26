@@ -11,10 +11,10 @@ const Contacts: React.FC = () => {
     return (
       <div>
         <h1>For questions about this beauteous web page, please do not hesitate to contact:</h1>
-        <ul className="flex space-x-4">
+        <ul className="flex space-x-4 theme-neutral-colored theme-children-inherit">
           {contacts.map(contact => (
             <li key={contact.id}>
-              <strong>{contact.name}</strong>: {contact.email}
+              <strong className="theme-break-inherit">{contact.name}</strong>: {contact.email}
             </li>
           ))}
         </ul>
