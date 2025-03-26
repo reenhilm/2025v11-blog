@@ -8,7 +8,7 @@ export default function SearchResult({ post, postDetails }: { post: Post, postDe
     return (
         <article className="place-self-start flex flex-col my-3 w-full">
             {!postDetails ?
-                <PostTextAsLink id={post.id} title={post.title} body={post.body} />
+                <PostTextAsLink id={post.id} title={post.title} body={post.body.substring(0, 100) + '...'} />
                 :
                 <PostTextAsText title={post.title} body={post.body} />}
             <div className="flex justify-between mx-4 my-2">
