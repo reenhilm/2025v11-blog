@@ -58,11 +58,20 @@ export async function getProlificPosters() {
         userPostCounts[post.userId] = (userPostCounts[post.userId] || 0) + 1;
     });
 
-    // Convert to an array and sort by post count
-    const prolificPosters = Object.entries(userPostCounts)
-        .map(([userId, count]) => ({ userId: Number(userId), count }))
-        .sort((a, b) => b.count - a.count);
-    return prolificPosters;
+    // Fetch user details and add the name to the result  
+    const prolificPosters = await Promise.all(
+        Object.entries(userPostCounts).map(async ([userId, count]) => {
+            const user = await fetchUserById(Number(userId)); // Fetch user details
+            return {
+                userId: Number(userId),
+                username: String(user.username), 
+                count,
+            };
+        })
+    );
+
+    // Sort by post count in descending order
+    return prolificPosters.sort((a, b) => b.count - a.count);
 }
 
 export async function getTotalPostsCount() {

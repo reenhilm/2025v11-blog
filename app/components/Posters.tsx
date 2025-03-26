@@ -4,6 +4,7 @@ import { getProlificPosters } from "../actions";
 
 interface ProlificPoster {
     userId: number;
+    username: string;
     count: number;
 }
 
@@ -28,13 +29,14 @@ const Posters: React.FC = () => {
         return <div>{error}</div>;
     }
 
+    //Modified to include name and count.
     return (
         <div>
             <h2>Most Prolific Posters</h2>
             <ul>
                 {posters.map((poster) => (
                     <li key={poster.userId}>
-                        User ID: {poster.userId}, Posts: {poster.count}
+                        Name: {poster.username}, User ID: {poster.userId}, Posts: {poster.count}
                     </li>
                 ))}
             </ul>
