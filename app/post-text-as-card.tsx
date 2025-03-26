@@ -22,17 +22,20 @@ export default function PostTextAsCard({
   reactions: Reactions;
 }) {
   return (
-    <Link href={`/posts/${id}`} className="no-underline">
+    <main>
+    
       <Card>
+      <Link href={`/posts/${id}`} className="no-underline">
         <CardHeader>
           <CardTitle>{title}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="mx-1 line-clamp-2">{body}</p>
-          <h4 className="cursor-pointer underline text-blue-700 mt-2 ">
+          <h4 className="hover:underline cursor-pointer primarycolored theme-set_url-link mr-2 mt-2 float-right">
             read more
           </h4>
         </CardContent>
+        </Link>
         <CardFooter>
           <div className="flex justify-between mx-4 my-2">
             <div className="flex justify-between gap-1">
@@ -66,6 +69,7 @@ export default function PostTextAsCard({
           </div>
         </CardFooter>
       </Card>
-    </Link>
+    
+    </main>
   );
 }
