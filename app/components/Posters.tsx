@@ -36,7 +36,7 @@ const Posters: React.FC = () => {
             <ul>
                 {posters.map((poster) => (
                     <li key={poster.userId}>
-                        Name: {poster.username}, Posts: {poster.count}
+                        <b>Name:</b> {poster.username}, Posts: {poster.count}
                     </li>
                 ))}
             </ul>
