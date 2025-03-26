@@ -153,3 +153,13 @@ export const fetchUserById = async (userId: number): Promise<User | ApiError > =
         return ApiError.fromError(500, "Network error occurred.");
     }
 };
+
+export const getPostsByAge = async (ageRange: string): Promise<number> => {
+    // Replace with your API call logic
+    const response = await fetch(`https://dummyjson.com/posts?limit=0?ageRange=${ageRange}`);
+    if (!response.ok) {
+        throw new Error("Failed to fetch posts by age.");
+    }
+    const data = await response.json();
+    return data.totalCount;
+};
