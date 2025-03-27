@@ -102,7 +102,7 @@ export default function Searching() {
         handleClick();
       }} className="flex gap-2 my-4">
         <input
-          className="flex-1 border p-2 rounded w-100 theme-attribute-placeholder theme-border-text-colored theme-neutral-colored"
+          className="flex-1 border p-2 rounded theme-placeholder-neutral-colored theme-border-text-colored theme-text-colored"
           type="text"
           placeholder="Search for..."
           value={query}
