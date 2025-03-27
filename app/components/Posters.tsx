@@ -102,7 +102,12 @@ return (
                         className="hover:underline primarycolored theme-set_url-link"
                         key={index}
                         href={`/users/${poster.userId}`}
-                    >{poster.username}</Link>, Posts: {poster.count}, Age: {poster.age}
+                    >{poster.username}</Link>
+                    , <Link
+                        className="hover:underline primarycolored theme-set_url-link"
+                        key={'a' + index}
+                        href={`/users/${poster.userId}`}
+                    >Posts: {poster.count}</Link>, Age: {poster.age}
                 </li>
             ))}
         </ul>
