@@ -19,7 +19,7 @@ export default function SearchUI({ results }: SearchUIProps) {
           dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
                 {results.map((post) => (
                     <li key={post.id} className="flex flex-col gap-2 p-2">
-                        <Link href={`/posts/${post.id}`}><h2 className="cursor-pointer underline text-blue-700">{post.title}</h2></Link>
+                        <Link href={`/posts/${post.id}`}><h2 className="cursor-pointer underline text-blue-700 theme-accent-colored">{post.title}</h2></Link>
                         <h3>{post.views} views</h3>
                     </li>
                 ))}
