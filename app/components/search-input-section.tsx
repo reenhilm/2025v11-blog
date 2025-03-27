@@ -14,9 +14,9 @@ export default function SearchInputSection() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex my-4 border-1 rounded">
+        <form onSubmit={handleSubmit} className="flex gap-2 my-4">
             <input
-                className="indent-4 px-2 py-1"
+                className="flex-1 border p-2 rounded w-100"
                 type="text"
                 name="query"
                 aria-labelledby="Search Query"
