@@ -156,7 +156,7 @@ export const fetchUserById = async (userId: number): Promise<User | ApiError > =
 
 export const getPostsByAge = async (ageRange: string): Promise<number> => {
     // Replace with your API call logic
-    const response = await fetch(`https://dummyjson.com/posts?limit=0?ageRange=${ageRange}`);
+    const response = await fetch(`https://dummyjson.com/posts?limit=0&ageRange=${ageRange}`);
     if (!response.ok) {
         throw new Error("Failed to fetch posts by age.");
     }
