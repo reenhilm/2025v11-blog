@@ -34,3 +34,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Specifics for the JSON-Dummy-Blogger implementation
+
+Due to the incompatibility of shadcn with React 19, used herein, you may get an error message that can be overridden by >npm install --force (for example)
+Similarly, the chart-component is not 100% compatible, nonetheless it is included, for more info see:
+charts.js - react-chartjs-2 - was used, for more info see this location: https://www.npmjs.com/package/react-chartjs-2
+

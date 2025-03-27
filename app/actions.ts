@@ -58,20 +58,31 @@ export async function getProlificPosters() {
         userPostCounts[post.userId] = (userPostCounts[post.userId] || 0) + 1;
     });
 
-    // Convert to an array and sort by post count
-    const prolificPosters = Object.entries(userPostCounts)
-        .map(([userId, count]) => ({ userId: Number(userId), count }))
-        .sort((a, b) => b.count - a.count);
+    // Fetch user details and add the name to the result  
+    const prolificPosters = await Promise.all(
+        Object.entries(userPostCounts).map(async ([userId, count]) => {
+            const user = await fetchUserById(Number(userId)); // Fetch user info
+            
+            if (user instanceof ApiError) {
+                // If user is not found, return a default user
+                return {
+                    userId: Number(userId),
+                    username: "Unknown",
+                    count,
+                };
+            }   
+                 
+            return {
+                userId: Number(userId),
+                username: user.username,
+                age: Number(user.age),
+                count,
+            };
+        })
+    );
 
-    //Add one more mapping step to get the user name.
-    //const niceNames = await getAllUsers();   
-    //prolificPosters.forEach((poster) => {     
-    //    const user = users.find((user) => user.id === poster.userId);
-    //    poster.name = user?.name || "Unknown";
-    // }
-   // )   
-   //    return niceNames;
-    return prolificPosters;
+    // Sort by post count in descending order
+    return prolificPosters.sort((a, b) => b.count - a.count);
 }
 
 export async function getTotalPostsCount() {
@@ -141,4 +152,14 @@ export const fetchUserById = async (userId: number): Promise<User | ApiError > =
         //catching all errors, we don't want to show all internal error-messages to client so providing general error to client
         return ApiError.fromError(500, "Network error occurred.");
     }
+};
+
+export const getPostsByAge = async (ageRange: string): Promise<number> => {
+    // Replace with your API call logic
+    const response = await fetch(`https://dummyjson.com/posts?limit=0&ageRange=${ageRange}`);
+    if (!response.ok) {
+        throw new Error("Failed to fetch posts by age.");
+    }
+    const data = await response.json();
+    return data.totalCount;
 };

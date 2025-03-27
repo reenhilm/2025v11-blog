@@ -4,7 +4,7 @@ export default function PostTextAsLink({ id, title, body }: { id: number, title:
     return (
         <Link href={`/posts/${id}`} className="no-underline">
             <h2 className="text-xl mx-2">{title}</h2>
-            <p className="mx-1">{body}</p>
+            <p className="mx-1  line-clamp-2">{body}</p>
         </Link>
     )
 }

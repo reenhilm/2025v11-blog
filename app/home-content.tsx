@@ -12,6 +12,7 @@ export default async function HomeContent() {
   
   return (
     <main className="flex flex-col m-auto items-center max-w-120">
+    <main className="flex flex-col m-auto p-4 mt-5 items-center max-w-120">
       <SearchInputSection />
       <h1 className="text-3xl">Most viewed posts</h1>
       <SearchResultList posts={posts} />
