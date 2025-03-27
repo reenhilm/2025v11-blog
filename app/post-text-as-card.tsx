@@ -31,7 +31,7 @@ export default function PostTextAsCard({
         </CardHeader>
         <CardContent>
           <p className="mx-1 line-clamp-2">{body}</p>
-          <h4 className="hover:underline cursor-pointer primarycolored theme-set_url-link mr-2 mt-2 float-right">
+          <h4 className="hover:underline cursor-pointer mr-2 mt-2 float-right theme-accent-colored">
             read more
           </h4>
         </CardContent>
@@ -41,7 +41,7 @@ export default function PostTextAsCard({
             <div className="flex justify-between gap-1">
               {tags.map((tag, index) => (
                 <Link
-                  className="hover:underline primarycolored theme-set_url-link mr-2"
+                  className="hover:underline mr-2 theme-accent-colored"
                   key={index}
                   href={`/posts/tag/${tag}`}
                 >
@@ -50,7 +50,7 @@ export default function PostTextAsCard({
               ))}
             </div>
             <div className="flex gap-3 ml-5">
-              <div className="flex flex-col items-center theme-set-inherit_all">
+              <div className="flex flex-col items-center theme-children-inherit">
                 <figure>
                   🙂
                   <figcaption className="sr-only">Smiling smiley</figcaption>
