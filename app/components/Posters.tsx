@@ -11,6 +11,7 @@ import {
     Tooltip,
     Legend,
 } from "chart.js";
+import Link from 'next/link';
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -109,10 +110,18 @@ return (
             </tr>
             </thead>
         <tbody>
-            {posters.map((poster) => (
+                {posters.map((poster, index) => (
                 <tr key={poster.userId} className="hover:bg-gray-50">
-                    <td className="border border-gray-300 px-4 py-2">{poster.username}</td>
-                    <td className="border border-gray-300 px-4 py-2">{poster.count}</td>
+                    <td className="border border-gray-300 px-4 py-2"><Link
+                        className="hover:underline primarycolored theme-set_url-link"
+                        key={index}
+                        href={`/users/${poster.userId}`}
+                    >{poster.username}</Link></td>
+                        <td className="border border-gray-300 px-4 py-2"><Link
+                            className="hover:underline primarycolored theme-set_url-link"
+                            key={'a' + index}
+                            href={`/users/${poster.userId}`}
+                        >{poster.count}</Link></td>
                     <td className="border border-gray-300 px-4 py-2">{poster.age}</td>
                 </tr>
             ))}
