@@ -11,6 +11,7 @@ import {
     Tooltip,
     Legend,
 } from "chart.js";
+import Link from 'next/link';
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -94,9 +95,14 @@ return (
         </div>
         <h1 className="text-3xl font-bold flex justify-between my-5">The Most Prolific Posters</h1>
         <ul>
-            {posters.map((poster) => (
+            {posters.map((poster, index) => (
                 <li key={poster.userId}>
-                    <b>Name:</b> {poster.username}, Posts: {poster.count}, Age: {poster.age}
+                    <b>Name: </b>
+                    <Link
+                        className="hover:underline primarycolored theme-set_url-link"
+                        key={index}
+                        href={`/users/${poster.userId}`}
+                    >{poster.username}</Link>, Posts: {poster.count}, Age: {poster.age}
                 </li>
             ))}
         </ul>
