@@ -79,10 +79,16 @@ const chartOptions = {
     plugins: {
         legend: {
             position: "top" as const,
+            labels: {
+            font: {
+            size: 20, // Increase the font size for the legend
         },
+    },
+},
+
         title: {
             display: true,
-            text: "Age Distribution of Prolific Posters",
+            text: "Age Distribution of Posters",
         },
     },
 };
@@ -92,20 +98,29 @@ return (
         <div className="mt-10">
             <Bar data={chartData} options={chartOptions} />
         </div>
-        <h1 className="text-3xl font-bold flex justify-between my-5">The Most Prolific Posters</h1>
-        <ul>
+   
+        <h1 className="text-1xl font-bold flex justify-between my-5 text-center">The Most Prolific Posters</h1>
+        <table className="table-auto border-collapse border border-gray-300 w-full text-left">
+            <thead>
+            <tr className="bg-gray-100">
+                <th className="border border-gray-300 px-4 py-2">Name</th>
+                <th className="border border-gray-300 px-4 py-2">Posts</th>
+                <th className="border border-gray-300 px-4 py-2">Age</th>
+            </tr>
+            </thead>
+        <tbody>
             {posters.map((poster) => (
-                <li key={poster.userId}>
-                    <b>Name:</b> {poster.username}, Posts: {poster.count}, Age: {poster.age}
-                </li>
+                <tr key={poster.userId} className="hover:bg-gray-50">
+                    <td className="border border-gray-300 px-4 py-2">{poster.username}</td>
+                    <td className="border border-gray-300 px-4 py-2">{poster.count}</td>
+                    <td className="border border-gray-300 px-4 py-2">{poster.age}</td>
+                </tr>
             ))}
-        </ul>
-
-        {/* Bar Chart for Age Distribution */}
-        
+        </tbody>
+     </table>
     </div>
-);
+        );
 
-};
+    };
 
 export default Posters;
